@@ -54,6 +54,11 @@
             "react": ":control_knobs:",
             "role": "Self Hosted",
             "role_id": 830690181526323250
+        },
+        {
+            "react": ":dna:",
+            "role": "Outriders",
+            "role_id": 0
         }
     ],
     "role_message_id": 830691990944874496
