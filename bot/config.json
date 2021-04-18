@@ -3,63 +3,75 @@
         {
             "react": ":money_with_wings:",
             "role": "Inventory Hunter",
-            "role_id": 826169461014397038
+            "description": "if you want notifications from Inventory Hunter",
+            "role_id": 0
         },
         {
             "react": ":axe:",
             "role": "Valheim",
-            "role_id": 826251350811082834
+            "description": "if you want to play Valheim",
+            "role_id": 0
         },
         {
             "react": ":musical_note:",
             "role": "Music Control",
-            "role_id": 793926507655069727
+            "description": "if you'd like to control the Groovy bot",
+            "role_id": 0
         },
         {
             "react": ":military_helmet:",
             "role": "Siege",
-            "role_id": 830657892624760842
+            "description": "if you want to play Rainbow 6 Siege",
+            "role_id": 0
         },
         {
             "react": ":radioactive:",
             "role": "Rust",
-            "role_id": 830658495665668098
+            "description": "if you want to play Rust",
+            "role_id": 0
         },
         {
             "react": ":warning:",
             "role": "Tarkov",
-            "role_id": 830658877258465320
+            "description": "if you want to play Escape From Tarkov",
+            "role_id": 0
         },
         {
             "react": ":military_medal:",
             "role": "Insurgency",
-            "role_id": 830687268213358592
+            "description": "if you want to play Insurgency",
+            "role_id": 0
         },
         {
             "react": ":robot:",
             "role": "Satisfactory",
-            "role_id": 830687671377723403
+            "description": "if you want to play Satisfactory",
+            "role_id": 0
         },
         {
             "react": ":keyboard:",
             "role": "Code",
-            "role_id": 830689998130118686
+            "description": "if you want to talk about code",
+            "role_id": 0
         },
         {
             "react": ":desktop_computer:",
             "role": "Hardware",
-            "role_id": 830690096398336010
+            "description": "if you want to talk about gear/hardware",
+            "role_id": 0
         },
         {
             "react": ":control_knobs:",
             "role": "Self Hosted",
-            "role_id": 830690181526323250
+            "description": "if you want to talk about self hosted apps",
+            "role_id": 0
         },
         {
             "react": ":dna:",
             "role": "Outriders",
+            "description": "if you want to play Outriders",
             "role_id": 0
         }
     ],
-    "role_message_id": 830691990944874496
+    "role_message_id": 0
 }

@@ -75,8 +75,8 @@ def build_message():
 
     for item in configuredRoles:
         react = item["react"]
-        role = item["role"]
-        messageLines.append(f"React {react} for role {role}")
+        roleDescription = item["description"]
+        messageLines.append(f"React {react} {roleDescription}")
 
     return finalMessage.join(messageLines)
 
@@ -149,21 +149,24 @@ async def on_reaction_remove(reaction, user):
 
 @client.event
 async def on_ready():
-    global roles, sentMessage
+    global roles, roleMessage
     print(f"{client.user} has connected to Discord!")
     await client.change_presence(activity=botActivity)
     channel = await client.fetch_channel(channel_id=CHANNEL_ID)
 
     if role_message_exists():
         print("Role message exists already. Thanks!")
+        roleMessage = await channel.fetch_message(get_message_id())
+        await roleMessage.edit(content=build_message())
     else:
-        sentMessage = await channel.send(content=build_message())
-        store_message_id(sentMessage.id)
-        default_reacts = get_all_reacts()
+        roleMessage = await channel.send(content=build_message())
+        store_message_id(roleMessage.id)
 
-        for react in default_reacts:
-            print(f"Adding {emoji.emojize(react, use_aliases=True)}")
-            await sentMessage.add_reaction(emoji.emojize(react, use_aliases=True))
+    default_reacts = get_all_reacts()
+
+    for react in default_reacts:
+        print(f"Adding {emoji.emojize(react, use_aliases=True)}")
+        await roleMessage.add_reaction(emoji.emojize(react, use_aliases=True))
 
     roles = await client.guilds[0].fetch_roles()
     map_role_ID(roles)
