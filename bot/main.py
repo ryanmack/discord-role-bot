@@ -8,7 +8,8 @@ CHANNEL_ID = os.getenv("CHANNEL_ID")
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 botActivity = discord.Game("with the API")
-configFileLocation = os.path.join(os.path.dirname(__file__), "config.json")
+configFileLocation = os.path.join(
+    os.path.dirname(__file__), "config/config.json")
 
 
 def role_message_exists():
