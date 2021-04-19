@@ -8,7 +8,8 @@ CHANNEL_ID = os.getenv("CHANNEL_ID")
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 botActivity = discord.Game("with the API")
-configFileLocation = os.path.join(os.path.dirname(__file__), "config.json")
+configFileLocation = os.path.join(
+    os.path.dirname(__file__), "config/config.json")
 
 
 def role_message_exists():
@@ -95,6 +96,13 @@ def get_all_reacts():
 
 @client.event
 async def on_raw_reaction_add(payload):
+    # Get user details
+    user = client.get_user(payload.user_id)
+    # If the user reacting is the bot, return
+    if user == client.user:
+        return
+    # If the reaction is not on the correct message for manging roles, return.
+    # Defined in config/config.json
     if get_message_id() != payload.message_id:
         return
     role_ID = get_role_ID(emoji.demojize(str(payload.emoji)))
@@ -107,8 +115,16 @@ async def on_raw_reaction_add(payload):
 
 @client.event
 async def on_raw_reaction_remove(payload):
+    # Get user details
+    user = client.get_user(payload.user_id)
+    # If the user reacting is the bot, return
+    if user == client.user:
+        return
+    # If the reaction is not on the correct message for manging roles, return.
+    # Defined in config/config.json
     if get_message_id() != payload.message_id:
         return
+    # Cycle through roles and find the role matching the reaction
     role_ID = get_role_ID(emoji.demojize(str(payload.emoji)))
     for role in roles:
         if role_ID == role.id:
@@ -119,32 +135,6 @@ async def on_raw_reaction_remove(payload):
             await user.remove_roles(role)
             print(
                 f"The user {user.name} was removed from the role {role.name}")
-
-
-@client.event
-async def on_reaction_add(reaction, user):
-    if user == client.user:
-        return
-    if get_message_id() != reaction.message.id:
-        return
-    role_ID = get_role_ID(emoji.demojize(reaction.emoji))
-    for role in roles:
-        if role_ID == role.id:
-            await user.add_roles(role)
-            print(f"The user {user} was added to the role {role.name}")
-
-
-@client.event
-async def on_reaction_remove(reaction, user):
-    if user == client.user:
-        return
-    if get_message_id() != reaction.message.id:
-        return
-    role_ID = get_role_ID(emoji.demojize(reaction.emoji))
-    for role in roles:
-        if role_ID == role.id:
-            await user.remove_roles(role)
-            print(f"The user {user} was removed from the role {role.name}")
 
 
 @client.event

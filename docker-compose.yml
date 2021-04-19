@@ -1,0 +1,13 @@
+version: '3.3'
+
+volumes:
+    discord_bot_data:
+      {}
+
+services:
+    discord-role-bot:
+        env_file:
+            - .env
+        volumes:
+            - discord_bot_data:/app/config
+        image: richardsoper/discord-role-bot:latest
