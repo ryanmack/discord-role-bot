@@ -10,23 +10,24 @@ variables:
   TEST_IMAGE: registry.richardsoper.me/richardsoper/discord-role-bot:$CI_COMMIT_REF_NAME
   RELEASE_IMAGE: registry.richardsoper.me/richardsoper/discord-role-bot:latest
 
-before_script:
-  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.richardsoper.me
-after_script:
-  - docker ps | grep moby/buildkit | awk '{print $1}' | xargs docker stop | xargs docker rm
-
 build:
-  stage: build
-  script:
+  before_script:
     - docker run --privileged --rm tonistiigi/binfmt --install all
+  after_script:
+    - docker ps | grep moby/buildkit | awk '{print $1}' | xargs docker stop | xargs docker rm
+  stage: Build and Push branch
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.richardsoper.me
     - docker buildx create --use
     - docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag $TEST_IMAGE .
+  except:
+    - main
 
 release:
-  stage: release
+  stage: Build and Release latest
   script:
-    - docker pull $TEST_IMAGE
-    - docker tag $TEST_IMAGE $RELEASE_IMAGE
-    - docker push $RELEASE_IMAGE
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.richardsoper.me
+    - docker buildx create --use
+    - docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag $RELEASE_IMAGE .
   only:
     - main
