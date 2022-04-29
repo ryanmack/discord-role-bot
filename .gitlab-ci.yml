@@ -3,8 +3,8 @@ services:
   - docker:dind
 
 stages:
-  - build
-  - release
+  - Build and Push branch
+  - Build and Release latest
 
 variables:
   TEST_IMAGE: registry.richardsoper.me/richardsoper/discord-role-bot:$CI_COMMIT_REF_NAME
