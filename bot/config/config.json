@@ -1,18 +1,18 @@
 {
     "roles": [
         {
-            "react": ":money_with_wings:",
+            "react": ":octopus:",
             "react_id": 0,
-            "role": "Inventory Hunter",
-            "description": "if you want notifications from Inventory Hunter",
-            "role_id": 0
+            "role": "BAD",
+            "description": "Democratically Invested Fan",
+            "role_id": 1227698162437980300
         },
         {
-            "react": ":valheim:",
+            "react": ":fire:",
             "react_id": 0,
-            "role": "Valheim",
-            "description": "if you want to play Valheim",
-            "role_id": 0
+            "role": "MAD",
+            "description": "Competitive Democracy Enjoyer",
+            "role_id": 1227697813379612812
         },
         {
             "react": ":musical_note:",
